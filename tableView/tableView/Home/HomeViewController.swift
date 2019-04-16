@@ -1,0 +1,79 @@
+//
+//  ViewController.swift
+//  tableView
+//
+//  Created by Carlos Mendieta on 4/15/19.
+//  Copyright © 2019 Carlos Mendieta. All rights reserved.
+//
+
+import UIKit
+
+protocol HomeViewControllerDelegate {
+    func toggleMenuPanel()
+    func collapseSidePanels()
+
+}
+
+class HomeViewController: UIViewController {
+    
+    var delegate: HomeViewControllerDelegate!
+    var homeViewModel = HomeViewModel()
+    var option = 1
+    @IBOutlet weak var eventsTableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    @IBAction func menuTapped(_ sender: UIBarButtonItem) {
+        delegate.toggleMenuPanel()
+    }
+    
+}
+
+extension HomeViewController: MenuViewControllerDelegate {
+    func didSelectOption(_ option: Int) {
+        self.option = option
+        eventsTableView.reloadData()
+        delegate.collapseSidePanels()
+    }
+}
+
+extension HomeViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return homeViewModel.events.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let noImageCell = tableView.dequeueReusableCell(withIdentifier: "NoImageCell", for: indexPath) as! NoImageCell
+        let imageCell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
+        
+        noImageCell.eventDescription.text = homeViewModel.getDescription(index: indexPath.row)
+        noImageCell.eventTitle.text = homeViewModel.getTitle(index: indexPath.row)
+        
+        imageCell.eventTitle.text = homeViewModel.getTitle(index: indexPath.row)
+        imageCell.eventDescription.text = homeViewModel.getDescription(index: indexPath.row)
+        imageCell.eventImage.image = UIImage(named: homeViewModel.getImage(index: indexPath.row))
+        
+        switch option {
+        case 0:
+            return imageCell
+        case 1:
+            return noImageCell
+        case 2:
+            if homeViewModel.getRandomNumber(index: indexPath.row).isMultiple(of: 2){ //Int.random(in: 0...1).isMultiple(of: 2){
+                return noImageCell
+            }else {
+                return imageCell
+            }
+        default:
+            return noImageCell
+        }
+    }
+    
+    
+}
