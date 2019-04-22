@@ -17,11 +17,9 @@ class ContainerViewController: UIViewController {
     
     private var isMenuHidden = true
     private var currentState: SlideOutState = .bothCollapsed
-    private var menuViewController: MenuViewController!
-
+    private var menuNibViewController: MenuNibViewController!
     private var homeNavigationController: UINavigationController!
-    private var homeViewController: HomeViewController!
-
+    private var homeNibViewController: HomeNibViewController!
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -33,10 +31,9 @@ class ContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        homeViewController = UIStoryboard.homeViewController()
-        homeViewController.delegate = self
+        homeNibViewController.delegate = self
         
-        homeNavigationController = UINavigationController(rootViewController: homeViewController)
+        homeNavigationController = UINavigationController(rootViewController: homeNibViewController)
         homeNavigationController.isNavigationBarHidden = true
         view.addSubview(homeNavigationController.view)
         addChild(homeNavigationController)
@@ -75,17 +72,16 @@ extension ContainerViewController: HomeViewControllerDelegate {
     
     func addMenuViewController() {
         
-        guard menuViewController == nil else { return }
+        guard menuNibViewController == nil else { return }
         
-        if let vc = UIStoryboard.menuViewController() {
-            addChildMenuController(vc)
-            menuViewController = vc
-        }
-        menuViewController.delegate = homeViewController
-
+        let vc = MenuNibViewController()
+        addChildMenuController(vc)
+        menuNibViewController = vc
+        menuNibViewController.delegate = homeNibViewController
+        
     }
 
-    func addChildMenuController(_ menuController: MenuViewController) {
+    func addChildMenuController(_ menuController: MenuNibViewController) {
         view.insertSubview(menuController.view, at: 0)
         addChild(menuController)
         menuController.didMove(toParent: self)
