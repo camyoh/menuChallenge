@@ -16,8 +16,8 @@ protocol HomeViewControllerDelegate {
 class HomeViewController: UIViewController {
     
     var delegate: HomeViewControllerDelegate!
-    var homeViewModel = HomeViewModel()
-    var option = 0
+    private var homeViewModel = HomeViewModel()
+    private var option = 0
     @IBOutlet weak var eventsTableView: UITableView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -47,7 +47,7 @@ extension HomeViewController: UITableViewDataSource {
         let eventCell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
         let event = homeViewModel.getEvent(index: indexPath.row)
         
-        eventCell.setupCellFor(event: event, option: option, index: indexPath.row)
+        eventCell.setupCellFor(event: event, option: option, randomNumber: homeViewModel.arrayWithRandomNumbers[indexPath.row])
     
         return eventCell
     }

@@ -96,7 +96,7 @@ extension ContainerViewController: HomeViewControllerDelegate {
         let containerViewModel = ContainerViewModel()
         if shouldExpand{
             currentState = .leftPanelExpanded
-            animateCenterPanelXPosition(targetPosition: homeNavigationController.view.frame.width - containerViewModel.expandedOffset)
+            animateCenterPanelXPosition(targetPosition: homeNavigationController.view.frame.width * containerViewModel.expandedOffset)
             
         } else {
             animateCenterPanelXPosition(targetPosition: 0) { finished in
@@ -109,7 +109,7 @@ extension ContainerViewController: HomeViewControllerDelegate {
     
     func animateCenterPanelXPosition(targetPosition: CGFloat, completion: ((Bool) -> Void)? = nil) {
         
-        UIView.animate(withDuration: 0.4,
+        UIView.animate(withDuration: 0.35,
                        delay: 0,
                        usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 0,

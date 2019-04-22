@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 struct ContainerViewModel {
-    let expandedOffset: CGFloat =  100
+    let expandedOffset: CGFloat =  0.65
 }
