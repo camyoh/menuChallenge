@@ -49,31 +49,11 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let noImageCell = tableView.dequeueReusableCell(withIdentifier: "NoImageCell", for: indexPath) as! NoImageCell
-        let imageCell = tableView.dequeueReusableCell(withIdentifier: "ImageCell", for: indexPath) as! ImageCell
+        let eventCell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
+        let event = homeViewModel.getEvent(index: indexPath.row)
         
-        noImageCell.eventDescription.text = homeViewModel.getDescription(index: indexPath.row)
-        noImageCell.eventTitle.text = homeViewModel.getTitle(index: indexPath.row)
-        
-        imageCell.eventTitle.text = homeViewModel.getTitle(index: indexPath.row)
-        imageCell.eventDescription.text = homeViewModel.getDescription(index: indexPath.row)
-        imageCell.eventImage.image = UIImage(named: homeViewModel.getImage(index: indexPath.row))
-        
-        switch option {
-        case 0:
-            return imageCell
-        case 1:
-            return noImageCell
-        case 2:
-            if homeViewModel.getRandomNumber(index: indexPath.row).isMultiple(of: 2){ //Int.random(in: 0...1).isMultiple(of: 2){
-                return noImageCell
-            }else {
-                return imageCell
-            }
-        default:
-            return noImageCell
-        }
+        eventCell.setupCellFor(event: event, option: option)
+    
+        return eventCell
     }
-    
-    
 }
