@@ -14,18 +14,21 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventDescription: UILabel!
     @IBOutlet weak var imageWidth: NSLayoutConstraint!
-    @IBOutlet weak var leadingImage: NSLayoutConstraint!
+    @IBOutlet weak var imageHeight: NSLayoutConstraint!
+    @IBOutlet weak var leadingTitle: NSLayoutConstraint!
     
     
+    var arrayWithRandomNumbers = [Int]()
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageWidth.constant = 130
-        leadingImage.constant = 12
+        showImage()
+        eventTitle.text = nil
+        eventDescription.text = nil
     }
     
-    func setupCellFor(event: Event, option: Int){
-        
+    func setupCellFor(event: Event, option: Int, index: Int){
+        createRandomNumbers()
         eventTitle.text = event.name
         eventDescription.text = event.description
         eventImage.image = UIImage(named: event.image)
@@ -33,23 +36,37 @@ class EventCell: UITableViewCell {
         switch option
         {
         case 0:
-            imageWidth.constant = 130
-            leadingImage.constant = 12
+            showImage()
         case 1:
-            imageWidth.constant = 0
-            leadingImage.constant = 0
+            hideImage()
         case 2:
-            let random = Int.random(in: 0...1)
-            if random.isMultiple(of: 2){
-                imageWidth.constant = 0
-                leadingImage.constant = 0
+            if arrayWithRandomNumbers[index].isMultiple(of: 2){
+                hideImage()
             }else{
-                imageWidth.constant = 130
-                leadingImage.constant = 12
+                showImage()
             }
         default:
-            imageWidth.constant = 0
-            leadingImage.constant = 0
+            hideImage()
         }
     }
+    
+    func hideImage(){
+        imageWidth.constant = 0
+        imageHeight.constant = 0
+        leadingTitle.constant = 16
+    }
+    
+    func showImage(){
+        imageWidth.constant = 100
+        imageHeight.constant = 100
+        leadingTitle.constant = 16
+    }
+    
+    func createRandomNumbers(){
+        let homeViewModel = HomeViewModel()
+        for _ in 0..<homeViewModel.events.count {
+            arrayWithRandomNumbers.append(Int.random(in: 0...1))
+        }
+    }
+    
 }

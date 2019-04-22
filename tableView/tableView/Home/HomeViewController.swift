@@ -11,19 +11,14 @@ import UIKit
 protocol HomeViewControllerDelegate {
     func toggleMenuPanel()
     func collapseSidePanels()
-
 }
 
 class HomeViewController: UIViewController {
     
     var delegate: HomeViewControllerDelegate!
     var homeViewModel = HomeViewModel()
-    var option = 1
+    var option = 0
     @IBOutlet weak var eventsTableView: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -52,7 +47,7 @@ extension HomeViewController: UITableViewDataSource {
         let eventCell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
         let event = homeViewModel.getEvent(index: indexPath.row)
         
-        eventCell.setupCellFor(event: event, option: option)
+        eventCell.setupCellFor(event: event, option: option, index: indexPath.row)
     
         return eventCell
     }
