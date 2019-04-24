@@ -118,23 +118,23 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3m-FM-i9g">
-                                                    <rect key="frame" x="132" y="19" width="254" height="24"/>
+                                                    <rect key="frame" x="132" y="8" width="254" height="24"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oye-7Q-ZpZ">
-                                                    <rect key="frame" x="132" y="51" width="254" height="20.333333333333329"/>
+                                                    <rect key="frame" x="132" y="40" width="254" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="c3m-FM-i9g" firstAttribute="top" secondItem="WOf-XP-Ehy" secondAttribute="topMargin" constant="8" id="4Ts-EY-zRe"/>
-                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Oye-7Q-ZpZ" secondAttribute="bottom" constant="8" id="HIA-Kj-4CL"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dRI-fG-4wv" secondAttribute="bottom" constant="8" id="N3L-DE-8Dv"/>
+                                                <constraint firstItem="c3m-FM-i9g" firstAttribute="top" secondItem="WOf-XP-Ehy" secondAttribute="top" constant="8" id="2iG-Ar-Pkq"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dRI-fG-4wv" secondAttribute="bottom" constant="8" id="Gp2-ST-i68"/>
                                                 <constraint firstItem="Oye-7Q-ZpZ" firstAttribute="leading" secondItem="c3m-FM-i9g" secondAttribute="leading" id="QZH-17-dao"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Oye-7Q-ZpZ" secondAttribute="bottom" constant="8" id="WAl-1v-r1r"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Oye-7Q-ZpZ" secondAttribute="trailing" constant="8" id="bH3-3D-PK9"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="c3m-FM-i9g" secondAttribute="trailing" constant="8" id="hsi-zd-mWE"/>
                                                 <constraint firstItem="dRI-fG-4wv" firstAttribute="leading" secondItem="WOf-XP-Ehy" secondAttribute="leading" constant="16" id="iKk-uZ-QmR"/>

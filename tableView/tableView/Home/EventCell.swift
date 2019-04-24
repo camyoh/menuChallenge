@@ -20,7 +20,6 @@ class EventCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        showImage()
         eventTitle.text = nil
         eventDescription.text = nil
     }

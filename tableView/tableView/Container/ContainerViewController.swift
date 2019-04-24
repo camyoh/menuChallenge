@@ -18,9 +18,8 @@ class ContainerViewController: UIViewController {
     private var isMenuHidden = true
     private var currentState: SlideOutState = .bothCollapsed
     private var menuViewController: MenuViewController!
-
-    private var homeNavigationController: UINavigationController!
     private var homeViewController: HomeViewController!
+    private var homeNavigationController: UINavigationController!
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -47,11 +46,14 @@ class ContainerViewController: UIViewController {
 }
 
 private extension UIStoryboard {
-    static func mainStoryboard() -> UIStoryboard { return UIStoryboard(name: "Main", bundle: Bundle.main) }
+    static func mainStoryboard() -> UIStoryboard {
+        return UIStoryboard(name: "Main", bundle: Bundle.main)
+    }
     
     static func menuViewController() -> MenuViewController? {
         return mainStoryboard().instantiateViewController(withIdentifier: "MenuViewController") as? MenuViewController
     }
+    
     static func homeViewController() -> HomeViewController? {
         return mainStoryboard().instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
     }
@@ -108,7 +110,6 @@ extension ContainerViewController: HomeViewControllerDelegate {
     }
     
     func animateCenterPanelXPosition(targetPosition: CGFloat, completion: ((Bool) -> Void)? = nil) {
-        
         UIView.animate(withDuration: 0.35,
                        delay: 0,
                        usingSpringWithDamping: 0.5,
@@ -117,7 +118,5 @@ extension ContainerViewController: HomeViewControllerDelegate {
                         self.homeNavigationController.view.frame.origin.x = targetPosition
         }, completion: completion)
     }
-
-
 }
 
